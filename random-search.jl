@@ -1,3 +1,8 @@
+
+#
+#Ruby code translation of http://www.cleveralgorithms.com/nature-inspired/stochastic/random_search.html
+#
+
 using StatsBase: sample 
 
 globalBest = Dict(:cost => rand(0.1:0.1:1), :vector => [])
