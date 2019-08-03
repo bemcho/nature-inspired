@@ -34,7 +34,7 @@ end
 
 # problem configuration
 problem_size = 2
-search_space = [collect(-5.0*i:0.1/i^2:5.0*i) for i in 1:problem_size]
+search_space = [collect(-5.0:0.1:5.0) for i in 1:problem_size]
 # algorithm configuration
 max_iter = 100
 # execute the algorithm
