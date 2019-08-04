@@ -3,7 +3,7 @@
 #Ruby code translation of http://www.cleveralgorithms.com/nature-inspired/stochastic/random_search.html
 #
 
-using StatsBase: sample 
+using StatsBase: sample, Random
 
 globalBest = Dict(:cost => rand(0.1:0.1:1), :vector => [])
 
@@ -12,15 +12,15 @@ function objective_function(vector)
 end
 
 function random_vector(searchSpace::AbstractArray)
-    return [sample(searchSpace[i],1)[1] for i in 1:first(size(searchSpace))]
+    return [sample(searchSpace[i], 1)[1] for i in 1:first(size(searchSpace))]
 end
 
-function search(search_space, max_iter)
+function search(search_space, max_iter, randSampleFunc = random_vector, costFunc = objective_function)
     best = nothing
     for iter in 1:max_iter
         candidate = Dict()
-        candidate[:vector] = random_vector(search_space)
-        candidate[:cost] = objective_function(candidate[:vector])
+        candidate[:vector] = randSampleFunc(search_space)
+        candidate[:cost] = costFunc(candidate[:vector])
         if (best === nothing || candidate[:cost] < best[:cost]) 
             best = candidate
             if best[:cost] < globalBest[:cost]
