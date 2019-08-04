@@ -1,3 +1,6 @@
+#
+#Ruby code translation of http://www.cleveralgorithms.com/nature-inspired/stochastic/hill_climbing_search.html
+#
 function onemax(vector)
     return count(i->(i == '1'), vector)
 end
