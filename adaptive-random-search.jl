@@ -5,8 +5,6 @@
 
 using StatsBase: sample, Random
 
-globalBest = Dict(:cost => rand(1.0:0.1:5), :vector => [])
-
 function objective_function(vector)
     return sum(vector.^2)
 end
@@ -82,6 +80,7 @@ l_factor = 3.0
 iter_mult = 10
 max_no_impr = 30
 # execute the algorithm
+globalBest = Dict(:cost => rand(1.0:0.1:5), :vector => [])
 function test()
     best = search(max_iter, bounds, init_factor, s_factor, l_factor, iter_mult, max_no_impr)
     if best[:cost] < globalBest[:cost]
