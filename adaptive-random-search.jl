@@ -44,7 +44,7 @@ end
 
 
 function search(max_iter, bounds, init_factor, s_factor, l_factor, iter_mult, max_no_impr, randSampleFunc = random_vector, costFunc = objective_function)
-    step_size =  s_factor * init_factor
+    step_size =  rand(s_factor:l_factor)
     current, count = Dict(), 0
     current[:vector] = randSampleFunc(bounds)
     current[:cost] = costFunc(current[:vector])
