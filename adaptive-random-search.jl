@@ -44,7 +44,7 @@ end
 
 
 function search(max_iter, bounds, init_factor, s_factor, l_factor, iter_mult, max_no_impr, randSampleFunc = random_vector, costFunc = objective_function)
-    step_size =  rand(s_factor:l_factor)
+    step_size =  rand(s_factor:init_factor:l_factor)
     current, count = Dict(), 0
     current[:vector] = randSampleFunc(bounds)
     current[:cost] = costFunc(current[:vector])
@@ -66,7 +66,7 @@ function search(max_iter, bounds, init_factor, s_factor, l_factor, iter_mult, ma
             end
             count = 0
         end
-        println(" > iteration=$(iter + 1), best=$(current[:cost])")
+        println(" > iteration=$(iter), best=$(current[:cost])")
     end
     return current
 end
@@ -75,7 +75,7 @@ end
 problem_size = 2
 bounds = [collect(-5.0:0.1:5.0) for i in 1:problem_size]
 # algorithm configuration
-max_iter = 1000
+max_iter = 300
 init_factor = 0.05
 s_factor = 1.3
 l_factor = 3.0
