@@ -23,9 +23,6 @@ function search(search_space, max_iter, randSampleFunc = random_vector, costFunc
         candidate[:cost] = costFunc(candidate[:vector])
         if (best === nothing || candidate[:cost] < best[:cost]) 
             best = candidate
-            if best[:cost] < globalBest[:cost]
-                global globalBest = best
-            end
         end
         println(" > iteration=$(iter + 1), best=$(best[:cost])")
     end
@@ -39,4 +36,7 @@ search_space = [collect(-5.0:0.1:5.0) for i in 1:problem_size]
 max_iter = 100
 # execute the algorithm
 best = search(search_space, max_iter)
+if best[:cost] < globalBest[:cost]
+    global globalBest = best
+end
 println("Done.\n Best Solution: c=$(best[:cost]), v=$(best[:vector])\n GlobalBestScoreForAllRuns: c=$(globalBest[:cost]),v=$(globalBest[:vector]) ")
